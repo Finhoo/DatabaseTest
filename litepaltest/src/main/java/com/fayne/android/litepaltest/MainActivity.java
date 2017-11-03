@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import org.litepal.LitePal;
@@ -19,11 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btnCreateDatabase = findViewById(R.id.btnCreateDatabase);
-        btnCreateDatabase.setOnClickListener(view -> {
-            LitePal.getDatabase();
-        });
+        btnCreateDatabase.setOnClickListener(view -> LitePal.getDatabase());
 
-        findViewById(R.id.btnAddData).setOnClickListener(view -> {
+        findViewById(R.id.btnAddData).setOnClickListener((View view) -> {
             Book book = new Book();
             book.setName("The Da Vinci Code");
             book.setAuthor("Dan Brown");
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             book.save();
         });
 
-        findViewById(R.id.btnUpdateData).setOnClickListener(view -> {
+        findViewById(R.id.btnUpdateData).setOnClickListener((View view) -> {
            /* Book book = new Book();
             book.setName("The Lost Symbol");
             book.setAuthor("Dan Brown");
@@ -52,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
            book.updateAll();
         });
 
-        findViewById(R.id.btnDeleteData).setOnClickListener(view -> {
-            DataSupport.deleteAll(Book.class, "price < ?", "15");
-        });
+        findViewById(R.id.btnDeleteData).setOnClickListener(view -> DataSupport.deleteAll(Book.class, "price < ?", "15"));
 
         findViewById(R.id.btnQueryData).setOnClickListener(view -> {
 //            List<Book> books = DataSupport.findAll(Book.class);
